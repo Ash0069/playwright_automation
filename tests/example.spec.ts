@@ -25,3 +25,24 @@ test('can add product to cart', async ({ page }) => {
   await page.click('[data-test="add-to-cart-sauce-labs-backpack"]');
   await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
 });
+
+// test('new user', async ({ page }) => {
+
+//     page.on('dialog', async dialog => {
+//         console.log(`Alert message: ${dialog.message()}`);
+//         expect(dialog.message()).toContain('User registered successfully');
+//         await dialog.accept(); // Click OK
+//     });
+
+//     await page.goto('https://demoqa.com/register');
+//     await page.fill('#firstname', 'John');
+//     await page.waitForTimeout(3000);
+//     await page.fill('#lastname', 'Doe');
+//     await page.waitForTimeout(3000);
+//     await page.fill('#userName', 'johndoe');
+//     await page.waitForTimeout(3000);
+//     await page.fill('#password', 'Hello@123');
+//     await page.waitForTimeout(40000);
+//     await page.getByRole('button', { name: 'Register' }).click();
+
+// });
