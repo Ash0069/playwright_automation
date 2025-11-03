@@ -50,38 +50,49 @@ import { test, expect } from '@playwright/test';
 test('Form automation', async ({ page }) => {
   await page.goto('https://demoqa.com/automation-practice-form');
 
+  // Fill personal information
   await page.fill('#firstName', 'John');
   await page.fill('#lastName', 'Doe');
   await page.fill('#userEmail', 'johndoe@example.com');
 
+  // Select gender
   await page.locator('#gender-radio-1').check({ force: true });
   await expect(page.locator('#gender-radio-1')).toBeChecked();
 
+  // Fill phone number
   await page.fill('#userNumber', '1234567890');
 
+  // Select date of birth
   await page.click('#dateOfBirthInput');
   await page.locator('.react-datepicker__month-select').selectOption('January');
   await page.locator('.react-datepicker__year-select').selectOption('1995');
   await page.locator('.react-datepicker__day--015').click();
 
+  // Select subjects
   await page.fill('#subjectsInput', 'Math');
-  await page.keyboard.press('Enter');
+  await page.click('.subjects-auto-complete__menu');
 
   // Check 'Sports' hobby
-  await page.locator('#hobbies-checkbox-1').check({ force: true });
+  await page.locator('label[for="hobbies-checkbox-1"]').click();
   await expect(page.locator('#hobbies-checkbox-1')).toBeChecked();
 
+  // Upload picture
   await page.setInputFiles('#uploadPicture', 'hello.txt');
 
+  // Fill current address
   await page.fill('#currentAddress', '123 Main St');
 
+  // Select state and city
   await page.click('#state');
   await page.getByText('NCR', { exact: true }).click();
 
+  // Select city
   await page.click('#city');
   await page.getByText('Delhi', { exact: true }).click();
 
+  // Submit form
   await page.getByRole('button', { name: 'Submit' }).click();
 
+  // Verify modal is visible
   await expect(page.locator('.modal-content')).toBeVisible();
 });
